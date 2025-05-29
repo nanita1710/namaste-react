@@ -2,7 +2,7 @@ import { CDN_URL } from "../utils/contants";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  const { cloudinaryImageId, name, cuisines, avgRating, deliveryTime } =
+  const { cloudinaryImageId, name, cuisines, avgRating, sla } =
     resData;
 
   const styleCard = {
@@ -19,7 +19,7 @@ const RestaurantCard = (props) => {
       <h3>{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating}</h4>
-      <h4>{deliveryTime}</h4>
+      <h4>{sla.deliveryTime}</h4>
     </div>
   );
 };
