@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import Shimmer from "./shimmer";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -8,6 +8,8 @@ const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardWithLabel =  withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -27,6 +29,9 @@ const Body = () => {
         ?.restaurants
     );
   };
+
+  // console.log(filteredRestaurant);
+  
 
   const onlineStatus = useOnlineStatus();
 
@@ -80,7 +85,7 @@ const Body = () => {
         {filteredRestaurant?.map((res) => {
           return (
             <Link to={"/restaurants/" + res.info.id} key={res?.info?.id}>
-              <RestaurantCard resData={res?.info} />
+              {!res.info.promoted ? <RestaurantCardWithLabel resData={res?.info} /> : <RestaurantCard resData={res?.info} />}
             </Link>
           );
         })}
