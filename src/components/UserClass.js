@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "../utils/UserContext";
 
 class UserClass extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class UserClass extends React.Component {
   async componentDidMount() {
     const data = await fetch("https://api.github.com/users/nanita1710");
     const json = await data.json();
-    console.log(json);
 
     this.setState({
       userInfo: json,
@@ -23,7 +23,6 @@ class UserClass extends React.Component {
   }
   render() {
     const { login, type, avatar_url } = this.state.userInfo;
-    console.log(this.state.userInfo);
 
     return (
       <div className="user-card">
@@ -31,6 +30,7 @@ class UserClass extends React.Component {
         <h2>Name : {login}</h2>
         <h3>Location : {type}</h3>
         <h4>Contact : 9765453427</h4>
+        <h4>User : <UserContext.Consumer>{(data)=> data.loggedInUser}</UserContext.Consumer></h4>
       </div>
     );
   }
