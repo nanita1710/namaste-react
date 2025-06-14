@@ -2,6 +2,7 @@ import { CDN_URL } from "../utils/contants";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
+  
   const { cloudinaryImageId, name, cuisines, avgRating, sla } =
     resData;
 
@@ -10,7 +11,7 @@ const RestaurantCard = (props) => {
   };
 
   return (
-    <div className="m-4 p-4 w-[250px] rounded-lg bg-slate-100 hover:bg-slate-200" >
+    <div data-testid="resCard" className="m-4 p-4 w-[250px] rounded-lg bg-slate-100 hover:bg-slate-200" >
       <img
         className="rounded-lg"
         alt="res-logo"
